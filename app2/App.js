@@ -7,20 +7,32 @@
  */
 
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Button, TouchableOpacity} from 'react-native';
+import {Platform, StyleSheet, Text, View, Button, TouchableOpacity, Image, Alert} from 'react-native';
 
 type Props = {};
 
-const botaoPressioando = () => {
-  alert("APERTOU");
+const gerarNovaFrase = () => {
+  var numeroAleatorio = Math.floor(Math.random() * 5);
+
+  var frases = Array();
+  frases[0] = 'aa';
+  frases[1] = 'ac';
+  frases[2] = 'av';
+  frases[3] = 'ab';
+  frases[4] = 'as';
+  Alert.alert(frases[numeroAleatorio]);
 }
 
 export default class App extends Component<Props> {
   render() {
     return (
       <View style={styles.principal}>
-        <TouchableOpacity style={styles.botao} onPress={botaoPressioando}>
-          <Text style={styles.textoBotao}>Clique aqui</Text>
+        <Image source={require('./imgs/logo.png')}/>
+        <TouchableOpacity 
+          style={styles.botao}
+          onPress={gerarNovaFrase}
+        >
+          <Text style={styles.textoBotao}>Nova Frase</Text>
         </TouchableOpacity>
       </View>
     );
@@ -29,21 +41,19 @@ export default class App extends Component<Props> {
 
 const styles = StyleSheet.create({
   principal : {
-    paddingTop : 40,
+    flex: 1,
+    justifyContent: "center",
+    alignItems : "center"
   },
-  botao : {
-    backgroundColor : '#fff',
-    borderColor : '#48BBEC',
-    borderWidth : 1,
-    borderRadius : 8,
-    shadowColor : '#000',
-    shadowOffset : {width : 0, height: 2},
-    shadowOpacity : 0.4
+  botao: {
+    backgroundColor : "#538530",
+    paddingVertical : 10,
+    paddingHorizontal : 40,
+    marginTop : 20
   },
-  textoBotao : {
-    color : '#48BBEC',
+  textoBotao: {
+    color : "#FFF",
     fontSize : 16,
-    fontWeight : 'bold',
-    alignSelf : 'center'
+    fontWeight : "bold"
   }
 });
